@@ -40,11 +40,11 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "async": "3.2.4",
-    "debug": "4.3.4",
+    "async": "^3.2.4",
+    "debug": "^4.3.4",
     "dotty": "0.0.2",
     "jsondate": "0.0.1",
-    "lodash": "4.17.19",
+    "lodash": "^4.17.21",
     "parent-require": "1.0.0",
     "tolerance": "1.0.0",
     "uuid": "^9.0.0"
