@@ -57,7 +57,7 @@
     "expect.js": ">=0.1.2",
     "mocha": "10.2.0",
     "mongodb": "^5.0.1",
-    "redis": "3.0.2",
+    "redis": "^4.6.4",
     "tingodb": ">=0.0.1"
   },
   "scripts": {
