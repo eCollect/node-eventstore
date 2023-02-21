@@ -7,7 +7,7 @@ This is a fork of `thenativeweb/node-eventstore` since the latter was deprecated
 
 - load and store events via EventStream object
 - event dispatching to your publisher (optional)
-- supported Dbs (inmemory, mongodb, redis, tingodb, elasticsearch, azuretable, dynamodb)
+- supported Dbs (inmemory, mongodb, redis, tingodb, azuretable, dynamodb)
 - snapshot support
 - query your events
 
@@ -91,46 +91,6 @@ var es = require('eventstore')({
   timeout: 10000,                             // optional
   // emitStoreEvents: true,                   // optional, by default no store events are emitted
   // maxSnapshotsCount: 3                     // optional, defaultly will keep all snapshots
-});
-```
-
-example with elasticsearch:
-```javascript
-var es = require('eventstore')({
-  type: 'elasticsearch',
-  host: 'localhost:9200',                     // optional
-  indexName: 'eventstore',                    // optional
-  eventsTypeName: 'events',                   // optional
-  snapshotsTypeName: 'snapshots',             // optional
-  log: 'warning',                             // optional
-  maxSearchResults: 10000,                    // optional
-  // emitStoreEvents: true,                   // optional, by default no store events are emitted
-  // maxSnapshotsCount: 3                     // optional, defaultly will keep all snapshots
-});
-```
-
-example with custom elasticsearch client (e.g. with AWS ElasticSearch client. Note ``` http-aws-es ``` package usage in this example):
-```javascript
-var elasticsearch = require('elasticsearch');
-
-var esClient = = new elasticsearch.Client({
-  hosts: 'SOMETHING.es.amazonaws.com',
-  connectionClass: require('http-aws-es'),
-  amazonES: {
-    region: 'us-east-1',
-    accessKey: 'REPLACE_AWS_accessKey',
-    secretKey: 'REPLACE_AWS_secretKey'
-  }
-});
-
-var es = require('eventstore')({
-  type: 'elasticsearch',
-  client: esClient,
-  indexName: 'eventstore',
-  eventsTypeName: 'events',
-  snapshotsTypeName: 'snapshots',
-  log: 'warning',
-  maxSearchResults: 10000
 });
 ```
 

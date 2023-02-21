@@ -4,7 +4,7 @@ var expect = require('expect.js'),
   _ = require('lodash'),
   crypto = require('crypto');
 
-var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'elasticsearch', 'azuretable', 'dynamodb'*/];
+var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'azuretable', 'dynamodb'*/];
 
 var token = crypto.randomBytes(16).toString('hex');
 
