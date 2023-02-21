@@ -7,7 +7,7 @@ This is a fork of `thenativeweb/node-eventstore` since the latter was deprecated
 
 - load and store events via EventStream object
 - event dispatching to your publisher (optional)
-- supported Dbs (inmemory, mongodb, redis, tingodb, dynamodb)
+- supported Dbs (inmemory, mongodb, redis, tingodb)
 - snapshot support
 - query your events
 
@@ -93,40 +93,6 @@ var es = require('eventstore')({
   // maxSnapshotsCount: 3                     // optional, defaultly will keep all snapshots
 });
 ```
-
-example with dynamodb:
-```javascript
-var es = require('eventstore')({
-    type: 'dynamodb',
-    eventsTableName: 'events',                  // optional
-    snapshotsTableName: 'snapshots',            // optional
-    undispatchedEventsTableName: 'undispatched' // optional
-    EventsReadCapacityUnits: 1,                 // optional
-    EventsWriteCapacityUnits: 3,                // optional
-    SnapshotReadCapacityUnits: 1,               // optional
-    SnapshotWriteCapacityUnits: 3,              // optional
-    UndispatchedEventsReadCapacityUnits: 1,     // optional
-    UndispatchedEventsReadCapacityUnits: 1,     // optional
-    useUndispatchedEventsTable: true            // optional
-    eventsTableStreamEnabled: false             // optional
-    eventsTableStreamViewType: 'NEW_IMAGE',     // optional
-    emitStoreEvents: true                       // optional, by default no store events are emitted
-});
-```
-
-DynamoDB credentials are obtained by eventstore either from environment vars or credentials file. For setup see [AWS Javascript SDK](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html).
-
-DynamoDB provider supports [DynamoDB local](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) for local development via the AWS SDK `endpoint` option. Just set the `$AWS_DYNAMODB_ENDPOINT` (or `%AWS_DYNAMODB_ENDPOINT%` in Windows) environment variable to point to your running instance of Dynamodb local like this:
-
-    $ export AWS_DYNAMODB_ENDPOINT=http://localhost:8000
-
-Or on Windows:
-
-    > set AWS_DYNAMODB_ENDPOINT=http://localhost:8000
-
-The **useUndispatchedEventsTable** option to available for those who prefer to use DyanmoDB.Streams to pull events from the store instead of the UndispatchedEvents table. The default is true. Setting this option to false will result in the UndispatchedEvents table not being created at all, the getUndispatchedEvents method will always return an empty array, and the setEventToDispatched will effectively do nothing.
-
-Refer to [StreamViewType](http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_StreamSpecification.html#DDB-Type-StreamSpecification-StreamViewType) for a description of the **eventsTableStreamViewType** option
 
 ## Built-in event publisher (optional)
 
@@ -676,7 +642,6 @@ Currently these databases are supported:
 2. mongodb ([node-mongodb-native](https://github.com/mongodb/node-mongodb-native))
 3. redis ([redis](https://github.com/mranney/node_redis))
 4. tingodb ([tingodb](https://github.com/sergeyksv/tingodb))
-5. dynamodb ([aws-sdk](https://github.com/aws/aws-sdk-js))
 
 ## own db implementation
 
