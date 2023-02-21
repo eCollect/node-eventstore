@@ -7,7 +7,7 @@ This is a fork of `thenativeweb/node-eventstore` since the latter was deprecated
 
 - load and store events via EventStream object
 - event dispatching to your publisher (optional)
-- supported Dbs (inmemory, mongodb, redis, tingodb, azuretable, dynamodb)
+- supported Dbs (inmemory, mongodb, redis, tingodb, dynamodb)
 - snapshot support
 - query your events
 
@@ -91,20 +91,6 @@ var es = require('eventstore')({
   timeout: 10000,                             // optional
   // emitStoreEvents: true,                   // optional, by default no store events are emitted
   // maxSnapshotsCount: 3                     // optional, defaultly will keep all snapshots
-});
-```
-
-example with azuretable:
-```javascript
-var es = require('eventstore')({
-  type: 'azuretable',
-  storageAccount: 'nodeeventstore',
-  storageAccessKey: 'aXJaod96t980AbNwG9Vh6T3ewPQnvMWAn289Wft9RTv+heXQBxLsY3Z4w66CI7NN12+1HUnHM8S3sUbcI5zctg==',
-  storageTableHost: 'https://nodeeventstore.table.core.windows.net/',
-  eventsTableName: 'events',               // optional
-  snapshotsTableName: 'snapshots',         // optional
-  timeout: 10000,                          // optional
-  emitStoreEvents: true                    // optional, by default no store events are emitted
 });
 ```
 
@@ -690,8 +676,7 @@ Currently these databases are supported:
 2. mongodb ([node-mongodb-native](https://github.com/mongodb/node-mongodb-native))
 3. redis ([redis](https://github.com/mranney/node_redis))
 4. tingodb ([tingodb](https://github.com/sergeyksv/tingodb))
-5. azuretable ([azure-storage](https://github.com/Azure/azure-storage-node))
-6. dynamodb ([aws-sdk](https://github.com/aws/aws-sdk-js))
+5. dynamodb ([aws-sdk](https://github.com/aws/aws-sdk-js))
 
 ## own db implementation
 

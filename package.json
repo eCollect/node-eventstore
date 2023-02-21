@@ -28,7 +28,6 @@
     "redis",
     "tingodb",
     "azure",
-    "azuretable",
     "inmemory"
   ],
   "main": "./index.js",

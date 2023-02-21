@@ -874,7 +874,7 @@ describe('eventstore', function () {
 
     describe('with options containing a type property with the value of', function () {
 
-      var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'azuretable', 'dynamodb'*/];
+      var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'dynamodb'*/];
       var streamingApiTypes = ['mongodb'];
       var positionTypes = ['mongodb', 'inmemory'];
 
@@ -889,7 +889,7 @@ describe('eventstore', function () {
           var options = {};
 
           before(function () {
-            if (type === "azuretable" || type === "dynamodb") {
+            if (type === "dynamodb") {
               options = {
                   eventsTableName: 'events' + token,
                   undispatchedEventsTableName: 'undispatchedevents' + token,

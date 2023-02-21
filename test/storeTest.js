@@ -4,7 +4,7 @@ var expect = require('expect.js'),
   _ = require('lodash'),
   crypto = require('crypto');
 
-var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'azuretable', 'dynamodb'*/];
+var types = ['inmemory', 'tingodb', 'mongodb', 'redis'/*, 'dynamodb'*/];
 
 var token = crypto.randomBytes(16).toString('hex');
 
@@ -29,7 +29,7 @@ types.forEach(function (type) {
 
       before(function () {
         options = {};
-        if (type === "azuretable" || type === "dynamodb") {
+        if (type === "dynamodb") {
           options = {
               eventsTableName: 'events' + token,
               undispatchedEventsTableName: 'undispatchedevents' + token,
