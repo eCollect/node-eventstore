@@ -48,8 +48,6 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "aws-sdk": ">=2.4.9",
-    "azure-storage": ">=0.10.0",
     "eslint": ">=1.0.0",
     "expect.js": ">=0.1.2",
     "mocha": "^10.2.0",
