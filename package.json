@@ -1,7 +1,7 @@
 {
   "author": "adrai",
   "name": "eventstore",
-  "version": "1.15.5",
+  "version": "1.16.0",
   "contributors": [
     {
       "name": "Adriano Raiano",
@@ -15,7 +15,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git@github.com:adrai/node-eventstore.git"
+    "url": "git@github.com:eCollect/node-eventstore.git"
   },
   "description": "Node-eventstore is a node.js module for multiple databases. It can be very useful as eventstore if you work with (d)ddd, cqrs, eventsourcing, commands and events, etc.",
   "keywords": [
@@ -28,9 +28,7 @@
     "redis",
     "tingodb",
     "azure",
-    "azuretable",
-    "inmemory",
-    "elasticsearch"
+    "inmemory"
   ],
   "main": "./index.js",
   "directories": {
@@ -40,28 +38,24 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "async": "2.6.2",
-    "debug": "3.1.0",
-    "dotty": "0.0.2",
+    "async": "^3.2.4",
+    "debug": "^4.3.4",
+    "dotty": "^0.1.2",
     "jsondate": "0.0.1",
-    "lodash": "4.17.19",
+    "lodash": "^4.17.21",
     "parent-require": "1.0.0",
     "tolerance": "1.0.0",
-    "uuid": "3.3.3"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "aws-sdk": ">=2.4.9",
-    "azure-storage": ">=0.10.0",
-    "cradle": ">=0.7.1",
-    "elasticsearch": ">=10.0.0",
     "eslint": ">=1.0.0",
     "expect.js": ">=0.1.2",
-    "mocha": "3.x.x",
-    "mongodb": "2.1.x",
-    "redis": ">=0.10.1",
+    "mocha": "^10.2.0",
+    "mongodb": "^5.0.1",
+    "redis": "^4.6.4",
     "tingodb": ">=0.0.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -R spec -t 20000 --exit"
   }
 }

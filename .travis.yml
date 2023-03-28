@@ -3,8 +3,6 @@ sudo: false
 services:
   - mongodb
   - redis-server
-  - elasticsearch
-#   - couchdb
 
 language: node_js
 node_js:

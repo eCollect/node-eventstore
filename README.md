@@ -1,43 +1,13 @@
-# ⚠️ IMPORTANT NEWS! 📰
-
-I’ve been dealing with CQRS, event-sourcing and DDD long enough now that I don’t need working with it anymore unfortunately, so at least for now this my formal farewell!
-
-I want to thank everyone who has contributed in one way or another.
-Especially...
-
-- [Jan](https://github.com/jamuhl), who introduced me to this topic.
-- [Dimitar](https://github.com/nanov), one of the last bigger contributors and maintainer.
-- My last employer, who gave me the possibility to use all these CQRS modules in a big Cloud-System.
-- My family and friends, who very often came up short.
-
-Finally, I would like to thank [Golo Roden](https://github.com/goloroden), who was there very early at the beginning of my CQRS/ES/DDD journey and is now here again to take over these modules.
-
-Golo Roden is the founder, CTO and managing director of [the native web](https://www.thenativeweb.io/), a company specializing in native web technologies. Among other things, he also teaches CQRS/ES/DDD etc. and based on his vast knowledge, he brought wolkenkit to life.
-[wolkenkit](https://wolkenkit.io) is a CQRS and event-sourcing framework based on Node.js. It empowers you to build and run scalable distributed web and cloud services that process and store streams of domain events.
-
-With this step, I can focus more on [i18next](https://www.i18next.com), [locize](https://locize.com) and [localistars](https://localistars.com). I'm happy about that. 😊
-
-So, there is no end, but the start of a new phase for my CQRS modules. 😉
-
-I wish you all good luck on your journey.
-
-Who knows, maybe we'll meet again in a github issue or PR at [i18next](https://github.com/i18next/i18next) 😉
-
-
-[Adriano Raiano](https://twitter.com/adrirai)
-
----
-
 # Introduction
 
 [![JS.ORG](https://img.shields.io/badge/js.org-eventstore-ffb400.svg?style=flat-square)](http://js.org)
 [![travis](https://img.shields.io/travis/adrai/node-eventstore.svg)](https://travis-ci.org/adrai/node-eventstore) [![npm](https://img.shields.io/npm/v/eventstore.svg)](https://npmjs.org/package/eventstore)
 
-The project goal is to provide an eventstore implementation for node.js:
+This is a fork of `thenativeweb/node-eventstore` since the latter was deprecated. The project goal is to provide an eventstore implementation for node.js:
 
 - load and store events via EventStream object
 - event dispatching to your publisher (optional)
-- supported Dbs (inmemory, mongodb, redis, tingodb, elasticsearch, azuretable, dynamodb)
+- supported Dbs (inmemory, mongodb, redis, tingodb)
 - snapshot support
 - query your events
 
@@ -123,94 +93,6 @@ var es = require('eventstore')({
   // maxSnapshotsCount: 3                     // optional, defaultly will keep all snapshots
 });
 ```
-
-example with elasticsearch:
-```javascript
-var es = require('eventstore')({
-  type: 'elasticsearch',
-  host: 'localhost:9200',                     // optional
-  indexName: 'eventstore',                    // optional
-  eventsTypeName: 'events',                   // optional
-  snapshotsTypeName: 'snapshots',             // optional
-  log: 'warning',                             // optional
-  maxSearchResults: 10000,                    // optional
-  // emitStoreEvents: true,                   // optional, by default no store events are emitted
-  // maxSnapshotsCount: 3                     // optional, defaultly will keep all snapshots
-});
-```
-
-example with custom elasticsearch client (e.g. with AWS ElasticSearch client. Note ``` http-aws-es ``` package usage in this example):
-```javascript
-var elasticsearch = require('elasticsearch');
-
-var esClient = = new elasticsearch.Client({
-  hosts: 'SOMETHING.es.amazonaws.com',
-  connectionClass: require('http-aws-es'),
-  amazonES: {
-    region: 'us-east-1',
-    accessKey: 'REPLACE_AWS_accessKey',
-    secretKey: 'REPLACE_AWS_secretKey'
-  }
-});
-
-var es = require('eventstore')({
-  type: 'elasticsearch',
-  client: esClient,
-  indexName: 'eventstore',
-  eventsTypeName: 'events',
-  snapshotsTypeName: 'snapshots',
-  log: 'warning',
-  maxSearchResults: 10000
-});
-```
-
-example with azuretable:
-```javascript
-var es = require('eventstore')({
-  type: 'azuretable',
-  storageAccount: 'nodeeventstore',
-  storageAccessKey: 'aXJaod96t980AbNwG9Vh6T3ewPQnvMWAn289Wft9RTv+heXQBxLsY3Z4w66CI7NN12+1HUnHM8S3sUbcI5zctg==',
-  storageTableHost: 'https://nodeeventstore.table.core.windows.net/',
-  eventsTableName: 'events',               // optional
-  snapshotsTableName: 'snapshots',         // optional
-  timeout: 10000,                          // optional
-  emitStoreEvents: true                    // optional, by default no store events are emitted
-});
-```
-
-example with dynamodb:
-```javascript
-var es = require('eventstore')({
-    type: 'dynamodb',
-    eventsTableName: 'events',                  // optional
-    snapshotsTableName: 'snapshots',            // optional
-    undispatchedEventsTableName: 'undispatched' // optional
-    EventsReadCapacityUnits: 1,                 // optional
-    EventsWriteCapacityUnits: 3,                // optional
-    SnapshotReadCapacityUnits: 1,               // optional
-    SnapshotWriteCapacityUnits: 3,              // optional
-    UndispatchedEventsReadCapacityUnits: 1,     // optional
-    UndispatchedEventsReadCapacityUnits: 1,     // optional
-    useUndispatchedEventsTable: true            // optional
-    eventsTableStreamEnabled: false             // optional
-    eventsTableStreamViewType: 'NEW_IMAGE',     // optional
-    emitStoreEvents: true                       // optional, by default no store events are emitted
-});
-```
-
-DynamoDB credentials are obtained by eventstore either from environment vars or credentials file. For setup see [AWS Javascript SDK](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html).
-
-DynamoDB provider supports [DynamoDB local](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) for local development via the AWS SDK `endpoint` option. Just set the `$AWS_DYNAMODB_ENDPOINT` (or `%AWS_DYNAMODB_ENDPOINT%` in Windows) environment variable to point to your running instance of Dynamodb local like this:
-
-    $ export AWS_DYNAMODB_ENDPOINT=http://localhost:8000
-
-Or on Windows:
-
-    > set AWS_DYNAMODB_ENDPOINT=http://localhost:8000
-
-The **useUndispatchedEventsTable** option to available for those who prefer to use DyanmoDB.Streams to pull events from the store instead of the UndispatchedEvents table. The default is true. Setting this option to false will result in the UndispatchedEvents table not being created at all, the getUndispatchedEvents method will always return an empty array, and the setEventToDispatched will effectively do nothing.
-
-Refer to [StreamViewType](http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_StreamSpecification.html#DDB-Type-StreamSpecification-StreamViewType) for a description of the **eventsTableStreamViewType** option
 
 ## Built-in event publisher (optional)
 
@@ -760,8 +642,6 @@ Currently these databases are supported:
 2. mongodb ([node-mongodb-native](https://github.com/mongodb/node-mongodb-native))
 3. redis ([redis](https://github.com/mranney/node_redis))
 4. tingodb ([tingodb](https://github.com/sergeyksv/tingodb))
-5. azuretable ([azure-storage](https://github.com/Azure/azure-storage-node))
-6. dynamodb ([aws-sdk](https://github.com/aws/aws-sdk-js))
 
 ## own db implementation
 
