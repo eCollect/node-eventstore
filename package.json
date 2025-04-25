@@ -1,7 +1,7 @@
 {
   "author": "adrai",
   "name": "eventstore",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "contributors": [
     {
       "name": "Adriano Raiano",
@@ -45,13 +45,13 @@
     "lodash": "^4.17.21",
     "parent-require": "1.0.0",
     "tolerance": "1.0.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "mongodb": "^5.9.2"
   },
   "devDependencies": {
     "eslint": ">=1.0.0",
     "expect.js": ">=0.1.2",
     "mocha": "^10.2.0",
-    "mongodb": "^5.0.1",
     "redis": "^4.6.4",
     "tingodb": ">=0.0.1"
   },
